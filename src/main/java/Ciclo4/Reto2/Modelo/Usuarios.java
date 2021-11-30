@@ -10,25 +10,51 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- *
- * @author MIGUEL
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "usuarios")
+/**
+ *Clase principal 
+ */
 public class Usuarios {
 
 @Id    
 private Integer id;
+/**
+ *@param Id
+ */
 private String identification;
+/**
+ *@param identificación
+ */
 private String name;
+/**
+ *@param nombre
+ */
 private String address;
+/**
+ *@param dirección
+ */
 private String cellPhone;
+/**
+ *@param Celular
+ */
 private String email;
+/**
+ *@param correo
+ */
 private String password;
+/**
+ *@param contraseña
+ */
 private String zone;
+/**
+ *@param zona
+ */
 private String type;
+/**
+ *@param Tipo
+ */
 
 }

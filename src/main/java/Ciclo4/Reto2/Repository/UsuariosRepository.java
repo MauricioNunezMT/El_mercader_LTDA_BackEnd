@@ -11,11 +11,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author MIGUEL
- */
 @Repository
+/**
+ *Clase principal
+ */
 public class UsuariosRepository {
     @Autowired
     private UsuariosCrudRepository repo;

@@ -8,10 +8,8 @@ import Ciclo4.Reto2.Modelo.Usuarios;
 import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
-
 /**
- *
- * @author MIGUEL
+ *Clase principal
  */
 public interface UsuariosCrudRepository extends MongoRepository<Usuarios, Integer>{
     
