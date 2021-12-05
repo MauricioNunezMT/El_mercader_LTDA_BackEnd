@@ -7,6 +7,7 @@ package Ciclo4.Reto2.Controller;
 import Ciclo4.Reto2.Modelo.Usuarios;
 import Ciclo4.Reto2.Services.UsuariosService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,11 @@ public class UsuariosController {
     @GetMapping(path = "all")
     public List<Usuarios> getAllUser(){
         return UsuarioService.getAll();
+    }
+    
+    @GetMapping(path = "{id}")
+    public Optional<Usuarios> getById(@PathVariable("id") Integer id){
+        return UsuarioService.getById(id);
     }
     
     @GetMapping(path = "emailexist/{email}")

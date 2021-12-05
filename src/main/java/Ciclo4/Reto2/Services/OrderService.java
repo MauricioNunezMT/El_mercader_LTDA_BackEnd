@@ -1,0 +1,79 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Ciclo4.Reto2.Services;
+
+import Ciclo4.Reto2.Modelo.Order;
+import Ciclo4.Reto2.Modelo.Usuarios;
+import Ciclo4.Reto2.Repository.OrderRepository;
+import Ciclo4.Reto2.Repository.UsuariosRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+/**
+ *clase principal
+ */
+public class OrderService {
+    @Autowired
+    private OrderRepository repo;
+    
+    @Autowired
+    private UsuariosRepository repoU;
+    
+    public List<Order> getAll(){
+        return repo.getAll();
+    }
+    
+    public Order Save(Order orden){
+        return repo.save(orden);
+    }
+    
+    public Optional<Order> getOrderById(int id){
+        return repo.getById(id);
+    }
+    
+    public void Delete(Integer id){
+        Optional <Order> us = repo.getById(id);
+         if (us.isPresent()) {
+            repo.delete(us.get());
+        }
+    }
+    
+    public Order update(Order orden) {
+        Optional<Order> or = repo.getById(orden.getId());
+        if (or.isPresent()) {
+            or.get().setId(orden.getId());
+            or.get().setRegisterDay(orden.getRegisterDay());
+            or.get().setStatus(orden.getStatus());
+
+            return repo.save(or.get());
+        }
+        return orden;
+    }
+    
+    public List<Order> getAllByZone(String zona){
+        List<Usuarios> users = repoU.getAll();
+        List<Order> orden = repo.getAll();
+        List<Order> existencia = new ArrayList<>();
+        users.forEach(
+                    user ->{
+                        if(user.getZone().equals(zona)){
+                            orden.forEach(
+                                ord ->{
+                                    if(ord.getSalesMan().equals(user)){
+                                        existencia.add(ord);
+                                    }   
+                                }
+                            );
+                        }
+                    }
+            );
+        return existencia;
+    }
+    
+}

@@ -24,6 +24,10 @@ public class UsuariosService {
         return repo.getAll();
     }
     
+    public Optional<Usuarios> getById(Integer id){
+        return repo.getById(id);
+    }
+    
     public Usuarios Save(Usuarios user){
         return repo.save(user);
     }

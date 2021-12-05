@@ -4,6 +4,7 @@
  */
 package Ciclo4.Reto2.Modelo;
 
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,14 @@ private String identification;
 private String name;
 /**
  *@param nombre
+ */
+private Date birthtDay;
+/**
+ *@param cumpleaños
+ */
+private String monthBirthtDay;
+/**
+ *@param mes
  */
 private String address;
 /**
