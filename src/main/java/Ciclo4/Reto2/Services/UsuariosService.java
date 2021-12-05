@@ -91,10 +91,6 @@ public class UsuariosService {
                         usersToSend.setPassword(user.getPassword());
                         usersToSend.setZone(user.getZone());
                         usersToSend.setType(user.getType());
-                    }else{
-                        usersToSend.setName("NO DEFINIDO");
-                        usersToSend.setEmail(email);
-                        usersToSend.setPassword(password);
                     }
                 }
         );

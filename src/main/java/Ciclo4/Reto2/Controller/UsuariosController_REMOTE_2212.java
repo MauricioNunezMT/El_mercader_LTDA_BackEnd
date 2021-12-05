@@ -7,7 +7,6 @@ package Ciclo4.Reto2.Controller;
 import Ciclo4.Reto2.Modelo.Usuarios;
 import Ciclo4.Reto2.Services.UsuariosService;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,16 +49,7 @@ public class UsuariosController {
         return UsuarioService.getAll();
     }
     
-<<<<<<< HEAD
-    @GetMapping(path = "{id}")
-    public Optional<Usuarios> getById(@PathVariable("id") Integer id){
-        return UsuarioService.getById(id);
-    }
-    
-    @GetMapping(path = "emailexist/{email}")
-=======
     @GetMapping(path = "emailexist/{email}")/**Llamado de clase necesaria*/
->>>>>>> 722cec9564b40c3d5eba4aaf856bd0d7f5ef1aac
     public boolean getByEmail(@PathVariable("email") String email){
         return UsuarioService.EmailExist(email);
     }
