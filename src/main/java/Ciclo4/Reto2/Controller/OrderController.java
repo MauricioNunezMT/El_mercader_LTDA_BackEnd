@@ -66,7 +66,7 @@ public class OrderController {
     }
     
     @GetMapping(path = "zona/{zone}")
-    public List<Order> getByEmail(@PathVariable("zone") String zona){
+    public List<Order> getByZone(@PathVariable("zone") String zona){
         return Service.getAllByZone(zona);
     }
     
