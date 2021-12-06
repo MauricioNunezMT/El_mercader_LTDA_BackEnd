@@ -4,7 +4,6 @@
  */
 package Ciclo4.Reto2.Modelo;
 
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 public class Usuarios {
 
-@Id    
+@Id
 private Integer id;
 /**
  *@param Id
@@ -33,11 +32,11 @@ private String name;
 /**
  *@param nombre
  */
-private Date birthtDay;
+//private Date birthtDay;
 /**
  *@param cumpleaños
  */
-private String monthBirthtDay;
+//private String monthBirthtDay;
 /**
  *@param mes
  */
