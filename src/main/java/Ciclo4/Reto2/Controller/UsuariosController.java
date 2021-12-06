@@ -39,7 +39,7 @@ public class UsuariosController {
     @PostMapping(path="new")/**Llamado de clase necesaria*/
     public ResponseEntity<Usuarios> saveNewUser(@RequestBody Usuarios user){
         Usuarios user_saved = UsuarioService.Save(user);
-        if(user_saved.getEmail() == null || user_saved.getPassword() == null || user_saved.getName() == null){
+        if(user_saved.getId() == null || user_saved.getEmail() == null || user_saved.getIdentification() == null){
             return new ResponseEntity<>(user_saved, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(user_saved, HttpStatus.CREATED);

@@ -31,21 +31,33 @@ public class UsuariosService {
     public Usuarios Save(Usuarios user){
         List<Usuarios> us = repo.getAll();
         Usuarios guardar = new Usuarios();
-        us.forEach(
-                    users ->{
-                        if(!users.getEmail().equals(user.getEmail()) || users.getId() != user.getId() || !users.getIdentification().equals(user.getIdentification())){
-                            guardar.setId(user.getId());
-                            guardar.setAddress(user.getAddress());
-                            guardar.setCellPhone(user.getCellPhone());
-                            guardar.setEmail(user.getEmail());
-                            guardar.setIdentification(user.getIdentification());
-                            guardar.setName(user.getName());
-                            guardar.setPassword(user.getPassword());
-                            guardar.setType(user.getType());
-                            guardar.setZone(user.getZone());
+        if (us.isEmpty()){
+            guardar.setId(user.getId());
+            guardar.setAddress(user.getAddress());
+            guardar.setCellPhone(user.getCellPhone());
+            guardar.setEmail(user.getEmail());
+            guardar.setIdentification(user.getIdentification());
+            guardar.setName(user.getName());
+            guardar.setPassword(user.getPassword());
+            guardar.setType(user.getType());
+            guardar.setZone(user.getZone());
+        }else{
+            us.forEach(
+                users ->{
+                    if(!users.getEmail().equals(user.getEmail()) && !users.getId().equals(user.getId()) && !users.getIdentification().equals(user.getIdentification())){
+                        guardar.setId(user.getId());
+                        guardar.setAddress(user.getAddress());
+                        guardar.setCellPhone(user.getCellPhone());
+                        guardar.setEmail(user.getEmail());
+                        guardar.setIdentification(user.getIdentification());
+                        guardar.setName(user.getName());
+                        guardar.setPassword(user.getPassword());
+                        guardar.setType(user.getType());
+                        guardar.setZone(user.getZone());
                         }
                     }
             );
+        }
         return repo.save(guardar);
     }
     
