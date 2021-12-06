@@ -50,16 +50,12 @@ public class UsuariosController {
         return UsuarioService.getAll();
     }
     
-<<<<<<< HEAD
     @GetMapping(path = "{id}")
     public Optional<Usuarios> getById(@PathVariable("id") Integer id){
         return UsuarioService.getById(id);
     }
     
-    @GetMapping(path = "emailexist/{email}")
-=======
     @GetMapping(path = "emailexist/{email}")/**Llamado de clase necesaria*/
->>>>>>> 722cec9564b40c3d5eba4aaf856bd0d7f5ef1aac
     public boolean getByEmail(@PathVariable("email") String email){
         return UsuarioService.EmailExist(email);
     }
