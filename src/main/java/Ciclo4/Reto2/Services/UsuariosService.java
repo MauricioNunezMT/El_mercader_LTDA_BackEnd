@@ -33,12 +33,14 @@ public class UsuariosService {
         List<Usuarios> us = repo.getAll();
         Usuarios guardar = new Usuarios();
         if (us.isEmpty()) {
-            if (!user.getEmail().equals("") || user.getId() != null || user.getAddress() != null
-                    || user.getCellPhone() != null || user.getIdentification() != null || user.getName() != null
-                    || user.getPassword() != null || user.getType() != null || user.getZone() == null) {
+            if (!user.getEmail().equals("") || !user.getId().equals("") || !user.getAddress().equals("")
+                    || !user.getCellPhone().equals("") || !user.getIdentification().equals("") || !user.getName().equals("")
+                    || !user.getPassword().equals("") || !user.getType().equals("") || !user.getZone().equals("") || !user.getBirthtDay().equals("") || !user.getMonthBirthtDay().equals("")) {
                 guardar.setId(user.getId());
                 guardar.setAddress(user.getAddress());
                 guardar.setCellPhone(user.getCellPhone());
+                guardar.setBirthtDay(user.getBirthtDay());
+                guardar.setMonthBirthtDay(user.getMonthBirthtDay());
                 guardar.setEmail(user.getEmail());
                 guardar.setIdentification(user.getIdentification());
                 guardar.setName(user.getName());
@@ -51,12 +53,14 @@ public class UsuariosService {
                     users -> {
                         if (!users.getEmail().equals(user.getEmail()) && !users.getId().equals(user.getId())
                         && !users.getIdentification().equals(user.getIdentification())) {
-                            if (user.getEmail().length() != 0 || user.getId() != null || user.getAddress() != null
-                            || user.getCellPhone() != null || user.getIdentification() != null || user.getName() != null
-                            || user.getPassword() != null || user.getType() != null || user.getZone() == null) {
+                            if (!user.getEmail().equals("") || !user.getId().equals("") || !user.getAddress().equals("")
+                            || !user.getCellPhone().equals("") || !user.getIdentification().equals("") || !user.getName().equals("")
+                            || !user.getPassword().equals("") || !user.getType().equals("") || !user.getZone().equals("") || !user.getBirthtDay().equals("") || !user.getMonthBirthtDay().equals("")) {
                                 guardar.setId(user.getId());
                                 guardar.setAddress(user.getAddress());
                                 guardar.setCellPhone(user.getCellPhone());
+                                guardar.setBirthtDay(user.getBirthtDay());
+                                guardar.setMonthBirthtDay(user.getMonthBirthtDay());
                                 guardar.setEmail(user.getEmail());
                                 guardar.setIdentification(user.getIdentification());
                                 guardar.setName(user.getName());
