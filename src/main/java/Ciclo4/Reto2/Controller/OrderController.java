@@ -59,7 +59,7 @@ public class OrderController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
-    @DeleteMapping(path="borrar/{id}")
+    @DeleteMapping(path="{id}")
     public ResponseEntity deleteUser(@PathVariable("id") Integer id){
         Service.Delete(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
