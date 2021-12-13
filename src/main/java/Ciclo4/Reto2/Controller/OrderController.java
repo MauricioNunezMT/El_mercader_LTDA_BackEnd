@@ -6,6 +6,8 @@ package Ciclo4.Reto2.Controller;
 
 import Ciclo4.Reto2.Modelo.Order;
 import Ciclo4.Reto2.Services.OrderService;
+
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,5 +71,21 @@ public class OrderController {
     public List<Order> getByZone(@PathVariable("zone") String zona){
         return Service.getAllByZone(zona);
     }
+
+    @GetMapping(path = "salesman/{id}")
+    public List<Order> getBySaleMan(@PathVariable("id") Integer id){
+        return Service.getBySaleMan(id);
+    }
+
+    @GetMapping(path = "date/{date}/{id}")
+    public List<Order> getByDate(@PathVariable("date") Date date,@PathVariable("id") Integer id){
+        return Service.getByDate(date,id);
+    }
+
+    @GetMapping(path = "state/{state}/{id}")
+    public List<Order> getByStatus(@PathVariable("state") String state,@PathVariable("id") Integer id){
+        return Service.getByStatus(state,id);
+    }
+
     
 }

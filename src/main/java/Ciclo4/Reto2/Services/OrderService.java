@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Date;
 
 @Service
 /**
@@ -21,29 +22,29 @@ import org.springframework.stereotype.Service;
 public class OrderService {
     @Autowired
     private OrderRepository repo;
-    
+
     @Autowired
     private UsuariosRepository repoU;
-    
+
     public List<Order> getAll(){
         return repo.getAll();
     }
-    
+
     public Order Save(Order orden){
         return repo.save(orden);
     }
-    
+
     public Optional<Order> getOrderById(int id){
         return repo.getById(id);
     }
-    
+
     public void Delete(Integer id){
         Optional <Order> us = repo.getById(id);
          if (us.isPresent()) {
             repo.delete(us.get());
         }
     }
-    
+
     public Order update(Order orden) {
         Optional<Order> or = repo.getById(orden.getId());
         if (or.isPresent()) {
@@ -55,7 +56,7 @@ public class OrderService {
         }
         return orden;
     }
-    
+
     public List<Order> getAllByZone(String zona){
         List<Usuarios> users = repoU.getAll();
         List<Order> orden = repo.getAll();
@@ -67,13 +68,90 @@ public class OrderService {
                                 ord ->{
                                     if(ord.getSalesMan().equals(user)){
                                         existencia.add(ord);
-                                    }   
+                                    }
                                 }
                             );
                         }
                     }
             );
         return existencia;
+    }
+
+    public List<Order> getBySaleMan(Integer id){
+        List<Order> orders = repo.getAll();
+        List<Usuarios> users = repoU.getAll();
+        List<Order> saleManOrder = new ArrayList<>();
+
+        users.forEach(
+                user ->{
+                    if(user.getId().equals(id)){
+                        orders.forEach(
+                                ord ->{
+                                    if(ord.getSalesMan().equals(user)){
+                                        saleManOrder.add(ord);
+                                    }
+                                }
+                        );
+                    }
+                }
+        );
+        return saleManOrder;
+    }
+
+    public List<Order> getByDate(Date date, Integer id){
+        List<Order> orders = repo.getAll();
+        List<Usuarios> users = repoU.getAll();
+        List<Order> ordersByDate = new ArrayList<>();
+
+        orders.forEach(
+                registerDate ->{
+                    String Rdate = registerDate.getRegisterDay().toString();
+                    String [] splitDate = Rdate.split("T");
+                    if(splitDate.equals(date)){
+                        users.forEach(
+                                user ->{
+                                    if(user.getId().equals(id)){
+                                        orders.forEach(
+                                                ord ->{
+                                                    if(ord.getSalesMan().equals(user)){
+                                                        ordersByDate.add(ord);
+                                                    }
+                                                }
+                                        );
+                                    }
+                                }
+                        );
+                    }
+                }
+        );
+        return ordersByDate;
+    }
+
+    public List<Order> getByStatus(String  status, Integer id){
+        List<Order> statusO = repo.getAll();
+        List<Usuarios> users = repoU.getAll();
+        List<Order> ordersByStatus = new ArrayList<>();
+
+        statusO.forEach(
+                registerDate ->{
+                    if(registerDate.getStatus().equals(status)){
+                        users.forEach(
+                                user ->{
+                                    if(user.getId().equals(id)){
+                                        statusO.forEach(
+                                                ord ->{
+                                                    if(ord.getSalesMan().equals(user)){
+                                                        ordersByStatus.add(ord);
+                                                    }
+                                                }
+                                        );
+                                    }
+                                }
+                        );
+                    }
+                }
+        );
+        return ordersByStatus;
     }
     
 }

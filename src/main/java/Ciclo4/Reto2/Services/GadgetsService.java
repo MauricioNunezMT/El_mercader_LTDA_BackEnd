@@ -22,6 +22,7 @@ public class GadgetsService {
     public List<Gadgets> getAll(){
         return gadgetsRepository.getAll();
     }
+
     
     public Optional<Gadgets> getGadgetById(int id){
         return gadgetsRepository.getGadgetById(id);
