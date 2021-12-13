@@ -92,6 +92,8 @@ public class UsuariosService {
                 us.get().setEmail(user.getEmail());
                 us.get().setAddress(user.getAddress());
                 us.get().setCellPhone(user.getCellPhone());
+                us.get().setBirthtDay(user.getBirthtDay());
+                us.get().setMonthBirthtDay(user.getMonthBirthtDay());
                 us.get().setIdentification(user.getIdentification());
                 us.get().setPassword(user.getPassword());
                 us.get().setName(user.getName());
