@@ -8,6 +8,8 @@ import Ciclo4.Reto2.Modelo.Order;
 import Ciclo4.Reto2.Modelo.Usuarios;
 import Ciclo4.Reto2.Repository.OrderRepository;
 import Ciclo4.Reto2.Repository.UsuariosRepository;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -48,11 +50,12 @@ public class OrderService {
     public Order update(Order orden) {
         Optional<Order> or = repo.getById(orden.getId());
         if (or.isPresent()) {
-            or.get().setId(orden.getId());
-            or.get().setRegisterDay(orden.getRegisterDay());
-            or.get().setStatus(orden.getStatus());
+            if(orden.getStatus() == "Rechazada" || orden.getStatus()=="Aprobada"){
+                or.get().setId(orden.getId());
+                or.get().setStatus(orden.getStatus());
 
-            return repo.save(or.get());
+                return repo.save(or.get());
+            }
         }
         return orden;
     }
@@ -98,16 +101,16 @@ public class OrderService {
         return saleManOrder;
     }
 
-    public List<Order> getByDate(Date date, Integer id){
+    public List<Order> getByDate(String date, Integer id){
         List<Order> orders = repo.getAll();
         List<Usuarios> users = repoU.getAll();
         List<Order> ordersByDate = new ArrayList<>();
 
         orders.forEach(
                 registerDate ->{
-                    String Rdate = registerDate.getRegisterDay().toString();
-                    String [] splitDate = Rdate.split("T");
-                    if(splitDate.equals(date)){
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date Rdate = registerDate.getRegisterDay();
+                    if(sdf.format(Rdate).equals(date)){
                         users.forEach(
                                 user ->{
                                     if(user.getId().equals(id)){

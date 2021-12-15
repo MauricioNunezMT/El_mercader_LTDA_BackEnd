@@ -53,12 +53,9 @@ public class OrderController {
     }
     
     @PutMapping(path="update")
-    public ResponseEntity<Order> UpdateOrder(@RequestBody Order orden){
+    public Order UpdateOrder(@RequestBody Order orden){
         Order ordenupdate = Service.update(orden);
-        if(ordenupdate.getId() == null || ordenupdate.getRegisterDay() == null || ordenupdate.getStatus() == null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return ordenupdate;
     }
     
     @DeleteMapping(path="{id}")
@@ -78,7 +75,7 @@ public class OrderController {
     }
 
     @GetMapping(path = "date/{date}/{id}")
-    public List<Order> getByDate(@PathVariable("date") Date date,@PathVariable("id") Integer id){
+    public List<Order> getByDate(@PathVariable("date") String date,@PathVariable("id") Integer id){
         return Service.getByDate(date,id);
     }
 
