@@ -53,9 +53,13 @@ public class OrderController {
     }
     
     @PutMapping(path="update")
-    public Order UpdateOrder(@RequestBody Order orden){
+    public ResponseEntity<Order> UpdateOrder(@RequestBody Order orden){
+
         Order ordenupdate = Service.update(orden);
-        return ordenupdate;
+        if (ordenupdate.getStatus() == null || ordenupdate.getId()==null){
+            return new ResponseEntity<>(ordenupdate, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(ordenupdate, HttpStatus.CREATED);
     }
     
     @DeleteMapping(path="{id}")
