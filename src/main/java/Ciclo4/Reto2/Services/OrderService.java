@@ -49,15 +49,12 @@ public class OrderService {
 
     public Order update(Order orden) {
         Optional<Order> or = repo.getById(orden.getId());
-        if (or.isPresent()) {
-            if(orden.getStatus() == "Rechazada" || orden.getStatus()=="Aprobada"){
+        if (or.get().getId() != null) {
                 or.get().setId(orden.getId());
                 or.get().setStatus(orden.getStatus());
-
                 return repo.save(or.get());
-            }
         }
-        return orden;
+        return or.get();
     }
 
     public List<Order> getAllByZone(String zona){
