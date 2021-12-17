@@ -103,17 +103,14 @@ public class OrderService {
         List<Usuarios> users = repoU.getAll();
         List<Order> ordersByDate = new ArrayList<>();
 
-        orders.forEach(
-                registerDate ->{
+
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    Date Rdate = registerDate.getRegisterDay();
-                    if(sdf.format(Rdate).equals(date)){
                         users.forEach(
                                 user ->{
-                                    if(user.getId().equals(id)){
+                                    if(user.getId()==(id)){
                                         orders.forEach(
                                                 ord ->{
-                                                    if(ord.getSalesMan().equals(user)){
+                                                    if(ord.getSalesMan().equals(user) && sdf.format(ord.getRegisterDay()).equals(date)){
                                                         ordersByDate.add(ord);
                                                     }
                                                 }
@@ -121,9 +118,8 @@ public class OrderService {
                                     }
                                 }
                         );
-                    }
-                }
-        );
+
+
         return ordersByDate;
     }
 
@@ -132,15 +128,12 @@ public class OrderService {
         List<Usuarios> users = repoU.getAll();
         List<Order> ordersByStatus = new ArrayList<>();
 
-        statusO.forEach(
-                registerDate ->{
-                    if(registerDate.getStatus().equals(status)){
                         users.forEach(
                                 user ->{
                                     if(user.getId().equals(id)){
                                         statusO.forEach(
                                                 ord ->{
-                                                    if(ord.getSalesMan().equals(user)){
+                                                    if(ord.getSalesMan().equals(user) && ord.getStatus().equals(status)){
                                                         ordersByStatus.add(ord);
                                                     }
                                                 }
@@ -148,10 +141,12 @@ public class OrderService {
                                     }
                                 }
                         );
-                    }
-                }
-        );
+
+
+
         return ordersByStatus;
     }
+
+
     
 }

@@ -59,4 +59,14 @@ public class GadgetsController {
     public boolean delete(@PathVariable("id") Integer id){
         return gadgetsService.delete(id);
     }
+
+    @GetMapping("description/{description}")
+    public List<Gadgets> getByDescription(@PathVariable("description") String description){
+        return gadgetsService.findByDesc(description);
+    }
+
+    @GetMapping("price/{price}")
+    public List<Gadgets> getByPrice(@PathVariable("price") double price){
+        return gadgetsService.findByPrice(price);
+    }
 }

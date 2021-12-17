@@ -4,6 +4,7 @@
  */
 package Ciclo4.Reto2.Controller;
 
+import Ciclo4.Reto2.Modelo.Gadgets;
 import Ciclo4.Reto2.Modelo.Usuarios;
 import Ciclo4.Reto2.Services.UsuariosService;
 import java.util.List;
@@ -79,5 +80,10 @@ public class UsuariosController {
     public ResponseEntity deleteUser(@PathVariable("id") Integer ident){
         UsuarioService.Delete(ident);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("birthday/{month}")
+    public List<Usuarios> getByBirthtDay(@PathVariable("month") String month){
+        return UsuarioService.findByBirthtDay(month);
     }
 }

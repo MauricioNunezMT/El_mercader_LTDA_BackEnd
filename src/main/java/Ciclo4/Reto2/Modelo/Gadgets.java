@@ -27,5 +27,4 @@ public class Gadgets {
     private boolean availability = true;
     private int quantity;
     private String photography;
-    
 }

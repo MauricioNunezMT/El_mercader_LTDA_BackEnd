@@ -30,8 +30,6 @@ public class UsuariosRepository {
     public Usuarios save(Usuarios usuario){
         return repo.save(usuario);
     }
-
-    public  Usuarios update(Usuarios usuario){return repo.save(usuario);}
     
     public void delete(Usuarios usuario){
         repo.delete(usuario);

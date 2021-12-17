@@ -5,7 +5,10 @@
 package Ciclo4.Reto2.Services;
 
 import Ciclo4.Reto2.Modelo.Gadgets;
+import Ciclo4.Reto2.Modelo.Order;
 import Ciclo4.Reto2.Repository.GadgetsRepository;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,4 +89,33 @@ public class GadgetsService {
         }).orElse(false);
         return aBoolean;
     }
+
+    public List<Gadgets> findByDesc(String description){
+        List<Gadgets> gadgets = gadgetsRepository.getAll();
+        List<Gadgets> gadgetsList = new ArrayList<>();
+
+        gadgets.forEach(
+                gadgets1 -> {
+                    if(gadgets1.getDescription().contains(description)==true){
+                        gadgetsList.add(gadgets1);
+                    }
+                }
+        );
+        return gadgetsList;
+    }
+
+    public List<Gadgets> findByPrice(double price){
+        List<Gadgets> gadgets = gadgetsRepository.getAll();
+        List<Gadgets> gadgetsList = new ArrayList<>();
+
+        gadgets.forEach(
+                gadgets1 -> {
+                    if(gadgets1.getPrice() <= price){
+                        gadgetsList.add(gadgets1);
+                    }
+                }
+        );
+        return gadgetsList;
+    }
+
 }

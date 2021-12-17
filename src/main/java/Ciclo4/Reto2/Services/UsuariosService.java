@@ -4,6 +4,7 @@
  */
 package Ciclo4.Reto2.Services;
 
+import Ciclo4.Reto2.Modelo.Gadgets;
 import Ciclo4.Reto2.Modelo.Usuarios;
 import Ciclo4.Reto2.Repository.UsuariosRepository;
 import java.util.ArrayList;
@@ -134,6 +135,8 @@ public class UsuariosService {
                         usersToSend.setId(user.getId());
                         usersToSend.setIdentification(user.getIdentification());
                         usersToSend.setName(user.getName());
+                        usersToSend.setBirthtDay(user.getBirthtDay());
+                        usersToSend.setMonthBirthtDay(user.getMonthBirthtDay());
                         usersToSend.setAddress(user.getAddress());
                         usersToSend.setCellPhone(user.getCellPhone());
                         usersToSend.setEmail(user.getEmail());
@@ -144,6 +147,20 @@ public class UsuariosService {
                 }
         );
         return usersToSend;
+    }
+
+    public List<Usuarios> findByBirthtDay(String Month){
+        List<Usuarios> usuarios = repo.getAll();
+        List<Usuarios> usuariosList = new ArrayList<>();
+
+        usuarios.forEach(
+                usuarios1 -> {
+                    if(usuarios1.getMonthBirthtDay().equals(Month)){
+                        usuariosList.add(usuarios1);
+                    }
+                }
+        );
+        return usuariosList;
     }
 
 }
